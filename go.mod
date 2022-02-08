@@ -24,7 +24,7 @@ require (
 	github.com/valyala/fasthttp v1.33.0
 	go.etcd.io/etcd/client/v3 v3.5.2
 	go.uber.org/atomic v1.9.0
-	go.uber.org/zap v1.20.0
+	go.uber.org/zap v1.21.0
 	golang.org/x/crypto v0.0.0-20220131195533-30dcbda58838
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	gonum.org/v1/gonum v0.9.3
