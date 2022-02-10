@@ -9,7 +9,7 @@ require (
 	github.com/golang/mock v1.6.0
 	github.com/google/uuid v1.3.0
 	github.com/hashicorp/go-plugin v1.4.3
-	github.com/jedib0t/go-pretty/v6 v6.2.5
+	github.com/jedib0t/go-pretty/v6 v6.2.7
 	github.com/jhump/protoreflect v1.10.2
 	github.com/jwalton/go-supportscolor v1.1.0
 	github.com/kralicky/grpc-gateway/v2 v2.7.3-0.20220201000610-57444701bbdc
