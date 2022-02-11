@@ -52,20 +52,22 @@ var _ = Describe("Management API Boostrap Token Management Tests", Ordered, func
 	//#endregion
 
 	//#region Happy Path Tests
+
 	var token *core.BootstrapToken
 	var fingerprint string
+	var err error
 	It("can create a bootstrap token", func() {
-		var err error
-		token, err = client.CreateBootstrapToken(context.Background(), &management.CreateBootstrapTokenRequest{})
+		token, err = client.CreateBootstrapToken(context.Background(), &management.CreateBootstrapTokenRequest{
+			Ttl: durationpb.New(time.Minute),
+		})
 		Expect(err).NotTo(HaveOccurred())
 
-		Expect(token.TokenID).NotTo(BeNil())
+		Expect(token.TokenID).NotTo(BeEmpty())
 		Expect(utf8.RuneCountInString(token.TokenID)).To(Equal(12))
 		Expect(token.LeaseID).NotTo(BeNil())
+		Expect(token.Secret).NotTo(BeEmpty())
 		Expect(utf8.RuneCountInString(token.Secret)).To(Equal(52))
-		Expect(token.Secret).NotTo(BeNil())
-		Expect(utf8.RuneCountInString(strconv.Itoa(int(token.LeaseID)))).To(Equal(19))
-		Expect(token.Ttl).To(Equal(int64(120)))
+		Expect(token.Ttl).To(Equal(int64(60)))
 	})
 
 	It("can list all bootstrap tokens", func() {

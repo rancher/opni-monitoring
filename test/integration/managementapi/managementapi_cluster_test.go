@@ -17,6 +17,7 @@ import (
 )
 
 //#region Test Setup
+
 var _ = Describe("Management API Cluster Management Tests", Ordered, func() {
 	var environment *test.Environment
 	var client management.ManagementClient
@@ -51,6 +52,7 @@ var _ = Describe("Management API Cluster Management Tests", Ordered, func() {
 		fmt.Println("Stopping test environment")
 		Expect(environment.Stop()).To(Succeed())
 	})
+
 	//#endregion
 
 	//#region Happy Path Tests
@@ -103,7 +105,6 @@ var _ = Describe("Management API Cluster Management Tests", Ordered, func() {
 		Expect(clusterInfo.Labels).To(HaveKeyWithValue("i", "999"))
 	})
 
-	var fingerprint2 string
 	It("can list all clusters using the same label", func() {
 		token2, err := client.CreateBootstrapToken(context.Background(), &management.CreateBootstrapTokenRequest{
 			Ttl: durationpb.New(time.Minute),
@@ -112,15 +113,11 @@ var _ = Describe("Management API Cluster Management Tests", Ordered, func() {
 
 		certsInfo, err := client.CertsInfo(context.Background(), &emptypb.Empty{})
 		Expect(err).NotTo(HaveOccurred())
-		fingerprint2 = certsInfo.Chain[len(certsInfo.Chain)-1].Fingerprint
+		fingerprint = certsInfo.Chain[len(certsInfo.Chain)-1].Fingerprint
 		Expect(fingerprint).NotTo(BeEmpty())
 
-		_, errC := environment.StartAgent("test-cluster-id-2", token2, []string{fingerprint2})
+		_, errC := environment.StartAgent("test-cluster-id-2", token2, []string{fingerprint})
 		Consistently(errC).ShouldNot(Receive())
-
-		Eventually(events).Should(Receive(WithTransform(func(event *management.WatchEvent) string {
-			return event.Cluster.Id
-		}, Equal("test-cluster-id-2"))))
 
 		_, err = client.EditCluster(context.Background(), &management.EditClusterRequest{
 			Cluster: &core.Reference{
@@ -141,23 +138,45 @@ var _ = Describe("Management API Cluster Management Tests", Ordered, func() {
 		})
 		Expect(err).NotTo(HaveOccurred())
 
-		Expect(clusterInfo.GetItems()).NotTo(BeNil())
+		clusterItems := clusterInfo.Items
+		Expect(clusterItems).To(HaveLen(2))
+		for _, clusterItem := range clusterItems {
+			Expect(clusterItem.Id).To(Or(Equal("test-cluster-id"), Equal("test-cluster-id-2")))
+			Expect(clusterItem.Labels).To(HaveKeyWithValue("i", "999"))
+		}
+
+		_, err = client.DeleteCluster(context.Background(), &core.Reference{
+			Id: "test-cluster-id-2",
+		})
+		Expect(err).NotTo(HaveOccurred())
 	})
 
-	XIt("should handle watching create and delete events", func() {
-		_, err := client.WatchClusters(context.Background(), &management.WatchClustersRequest{
-			KnownClusters: &core.ReferenceList{},
+	It("should handle watching create and delete events", func() {
+		token3, err := client.CreateBootstrapToken(context.Background(), &management.CreateBootstrapTokenRequest{
+			Ttl: durationpb.New(time.Minute),
 		})
 		Expect(err).NotTo(HaveOccurred())
 
-	})
+		certsInfo, err := client.CertsInfo(context.Background(), &emptypb.Empty{})
+		Expect(err).NotTo(HaveOccurred())
+		fingerprint = certsInfo.Chain[len(certsInfo.Chain)-1].Fingerprint
+		Expect(fingerprint).NotTo(BeEmpty())
 
-	//TODO: Need to complete this test
-	XIt("can watch cluster streams for information", func() {
-		_, err := client.WatchClusters(context.Background(), &management.WatchClustersRequest{
-			KnownClusters: &core.ReferenceList{},
+		_, errC := environment.StartAgent("test-cluster-id-3", token3, []string{fingerprint})
+		Consistently(errC).ShouldNot(Receive())
+
+		Eventually(events).Should(Receive(WithTransform(func(event *management.WatchEvent) string {
+			return event.Cluster.Id
+		}, Equal("test-cluster-id-3"))))
+
+		_, err = client.DeleteCluster(context.Background(), &core.Reference{
+			Id: "test-cluster-id-3",
 		})
 		Expect(err).NotTo(HaveOccurred())
+
+		Eventually(events).Should(Receive(WithTransform(func(event *management.WatchEvent) string {
+			return event.Cluster.Id
+		}, Equal("test-cluster-id-3"))))
 
 	})
 
