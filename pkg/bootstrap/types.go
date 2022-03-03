@@ -21,6 +21,17 @@ type BootstrapAuthRequest struct {
 	ClientPubKey []byte `json:"client_pub_key"`
 }
 
+type BootstrapLoggingRequest struct {
+	ClientID     string `json:"client_id"`
+	ClientName   string `json:"client_name"`
+	ClientPubKey []byte `json:"client_pub_key"`
+}
+
 type BootstrapAuthResponse struct {
 	ServerPubKey []byte `json:"server_pub_key"`
+}
+
+type BootstrapLoggingResponse struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
 }

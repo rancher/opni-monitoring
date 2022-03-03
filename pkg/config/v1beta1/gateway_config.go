@@ -115,12 +115,24 @@ const (
 	StorageTypeSecret StorageType = "secret"
 )
 
+type LoggingStorageType string
+
+const (
+	StorageTypeKubernetes LoggingStorageType = "kubernetes"
+)
+
 type StorageSpec struct {
-	Type StorageType      `json:"type,omitempty"`
-	Etcd *EtcdStorageSpec `json:"etcd,omitempty"`
+	Type        StorageType             `json:"type,omitempty"`
+	LoggingType LoggingStorageType      `json:"loggingType,omitempty"`
+	Etcd        *EtcdStorageSpec        `json:"etcd,omitempty"`
+	Kubernetes  *KuberneteesStorageSpec `json:"kubernetes,omitempty"`
 }
 
 type EtcdStorageSpec struct {
 	Endpoints []string  `json:"endpoints,omitempty"`
 	Certs     *MTLSSpec `json:"certs,omitempty"`
+}
+
+type KuberneteesStorageSpec struct {
+	SystemNamespace string `json:"systemNamespace,omitempty"`
 }

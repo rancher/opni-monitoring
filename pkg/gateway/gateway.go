@@ -29,6 +29,7 @@ import (
 	"github.com/rancher/opni-monitoring/pkg/rbac"
 	"github.com/rancher/opni-monitoring/pkg/storage"
 	"github.com/rancher/opni-monitoring/pkg/storage/etcd"
+	"github.com/rancher/opni-monitoring/pkg/storage/kubernetes"
 	"github.com/rancher/opni-monitoring/pkg/util"
 	"github.com/rancher/opni-monitoring/pkg/waitctx"
 	"github.com/rancher/opni-monitoring/pkg/webui"
@@ -89,6 +90,7 @@ func NewGateway(ctx context.Context, conf *config.GatewayConfig, opts ...Gateway
 
 	var tokenStore storage.TokenStore
 	var clusterStore storage.ClusterStore
+	var loggingClusterStore storage.LoggingClusterStore
 	var rbacStore storage.RBACStore
 	var kvBroker storage.KeyValueStoreBroker
 
@@ -114,6 +116,18 @@ func NewGateway(ctx context.Context, conf *config.GatewayConfig, opts ...Gateway
 		lg.With(
 			"type", conf.Spec.Storage.Type,
 		).Fatal("unknown storage type")
+	}
+
+	switch conf.Spec.Storage.LoggingType {
+	case v1beta1.StorageTypeKubernetes:
+		var systemNamespace string
+		if conf.Spec.Storage.Kubernetes == nil {
+			systemNamespace = "opni-system"
+		} else {
+			systemNamespace = conf.Spec.Storage.Kubernetes.SystemNamespace
+		}
+		store := kubernetes.NewKubernetesStore(kubernetes.WithNamespace(systemNamespace))
+		loggingClusterStore = store
 	}
 
 	conf.Spec.SetDefaults()
@@ -185,9 +199,10 @@ func NewGateway(ctx context.Context, conf *config.GatewayConfig, opts ...Gateway
 	g.setupCortexRoutes(app, rbacStore, clusterStore)
 
 	app.Post("/bootstrap/*", bootstrap.ServerConfig{
-		Certificate:  servingCertBundle,
-		TokenStore:   tokenStore,
-		ClusterStore: clusterStore,
+		Certificate:         servingCertBundle,
+		TokenStore:          tokenStore,
+		ClusterStore:        clusterStore,
+		LoggingClusterStore: loggingClusterStore,
 	}.Handle).Use(limiter.New()) // Limit requests to 5 per minute
 
 	app.Use(default404Handler)

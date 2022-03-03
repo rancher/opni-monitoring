@@ -222,6 +222,117 @@ func (mr *MockClusterStoreMockRecorder) UpdateCluster(ctx, cluster interface{}) 
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCluster", reflect.TypeOf((*MockClusterStore)(nil).UpdateCluster), ctx, cluster)
 }
 
+// MockLoggingClusterStore is a mock of LoggingClusterStore interface.
+type MockLoggingClusterStore struct {
+	ctrl     *gomock.Controller
+	recorder *MockLoggingClusterStoreMockRecorder
+}
+
+// MockLoggingClusterStoreMockRecorder is the mock recorder for MockLoggingClusterStore.
+type MockLoggingClusterStoreMockRecorder struct {
+	mock *MockLoggingClusterStore
+}
+
+// NewMockLoggingClusterStore creates a new mock instance.
+func NewMockLoggingClusterStore(ctrl *gomock.Controller) *MockLoggingClusterStore {
+	mock := &MockLoggingClusterStore{ctrl: ctrl}
+	mock.recorder = &MockLoggingClusterStoreMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockLoggingClusterStore) EXPECT() *MockLoggingClusterStoreMockRecorder {
+	return m.recorder
+}
+
+// CreateCluster mocks base method.
+func (m *MockLoggingClusterStore) CreateCluster(ctx context.Context, cluster *core.LoggingCluster) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateCluster", ctx, cluster)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// CreateCluster indicates an expected call of CreateCluster.
+func (mr *MockLoggingClusterStoreMockRecorder) CreateCluster(ctx, cluster interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCluster", reflect.TypeOf((*MockLoggingClusterStore)(nil).CreateCluster), ctx, cluster)
+}
+
+// DeleteCluster mocks base method.
+func (m *MockLoggingClusterStore) DeleteCluster(ctx context.Context, ref *core.Reference) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteCluster", ctx, ref)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// DeleteCluster indicates an expected call of DeleteCluster.
+func (mr *MockLoggingClusterStoreMockRecorder) DeleteCluster(ctx, ref interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteCluster", reflect.TypeOf((*MockLoggingClusterStore)(nil).DeleteCluster), ctx, ref)
+}
+
+// GetCluster mocks base method.
+func (m *MockLoggingClusterStore) GetCluster(ctx context.Context, ref *core.Reference) (*core.LoggingCluster, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetCluster", ctx, ref)
+	ret0, _ := ret[0].(*core.LoggingCluster)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetCluster indicates an expected call of GetCluster.
+func (mr *MockLoggingClusterStoreMockRecorder) GetCluster(ctx, ref interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCluster", reflect.TypeOf((*MockLoggingClusterStore)(nil).GetCluster), ctx, ref)
+}
+
+// ListClusters mocks base method.
+func (m *MockLoggingClusterStore) ListClusters(ctx context.Context, matchLabels *core.LabelSelector, matchOptions core.MatchOptions) (*core.LoggingClusterList, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListClusters", ctx, matchLabels, matchOptions)
+	ret0, _ := ret[0].(*core.LoggingClusterList)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListClusters indicates an expected call of ListClusters.
+func (mr *MockLoggingClusterStoreMockRecorder) ListClusters(ctx, matchLabels, matchOptions interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListClusters", reflect.TypeOf((*MockLoggingClusterStore)(nil).ListClusters), ctx, matchLabels, matchOptions)
+}
+
+// OpensearchUserStore mocks base method.
+func (m *MockLoggingClusterStore) OpensearchUserStore(ctx context.Context) (storage.OpensearchUserStore, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "OpensearchUserStore", ctx)
+	ret0, _ := ret[0].(storage.OpensearchUserStore)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// OpensearchUserStore indicates an expected call of OpensearchUserStore.
+func (mr *MockLoggingClusterStoreMockRecorder) OpensearchUserStore(ctx interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "OpensearchUserStore", reflect.TypeOf((*MockLoggingClusterStore)(nil).OpensearchUserStore), ctx)
+}
+
+// UpdateCluster mocks base method.
+func (m *MockLoggingClusterStore) UpdateCluster(ctx context.Context, cluster *core.LoggingCluster) (*core.LoggingCluster, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateCluster", ctx, cluster)
+	ret0, _ := ret[0].(*core.LoggingCluster)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateCluster indicates an expected call of UpdateCluster.
+func (mr *MockLoggingClusterStoreMockRecorder) UpdateCluster(ctx, cluster interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCluster", reflect.TypeOf((*MockLoggingClusterStore)(nil).UpdateCluster), ctx, cluster)
+}
+
 // MockRBACStore is a mock of RBACStore interface.
 type MockRBACStore struct {
 	ctrl     *gomock.Controller
@@ -516,4 +627,56 @@ func (m *MockKeyValueStoreBroker) NewKeyValueStore(namespace string) (storage.Ke
 func (mr *MockKeyValueStoreBrokerMockRecorder) NewKeyValueStore(namespace interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewKeyValueStore", reflect.TypeOf((*MockKeyValueStoreBroker)(nil).NewKeyValueStore), namespace)
+}
+
+// MockOpensearchUserStore is a mock of OpensearchUserStore interface.
+type MockOpensearchUserStore struct {
+	ctrl     *gomock.Controller
+	recorder *MockOpensearchUserStoreMockRecorder
+}
+
+// MockOpensearchUserStoreMockRecorder is the mock recorder for MockOpensearchUserStore.
+type MockOpensearchUserStoreMockRecorder struct {
+	mock *MockOpensearchUserStore
+}
+
+// NewMockOpensearchUserStore creates a new mock instance.
+func NewMockOpensearchUserStore(ctrl *gomock.Controller) *MockOpensearchUserStore {
+	mock := &MockOpensearchUserStore{ctrl: ctrl}
+	mock.recorder = &MockOpensearchUserStoreMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockOpensearchUserStore) EXPECT() *MockOpensearchUserStoreMockRecorder {
+	return m.recorder
+}
+
+// Get mocks base method.
+func (m *MockOpensearchUserStore) Get(ctx context.Context) (*core.OpensearchUser, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Get", ctx)
+	ret0, _ := ret[0].(*core.OpensearchUser)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Get indicates an expected call of Get.
+func (mr *MockOpensearchUserStoreMockRecorder) Get(ctx interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockOpensearchUserStore)(nil).Get), ctx)
+}
+
+// Put mocks base method.
+func (m *MockOpensearchUserStore) Put(ctx context.Context, user *core.OpensearchUser) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Put", ctx, user)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Put indicates an expected call of Put.
+func (mr *MockOpensearchUserStoreMockRecorder) Put(ctx, user interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Put", reflect.TypeOf((*MockOpensearchUserStore)(nil).Put), ctx, user)
 }

@@ -28,6 +28,17 @@ message ClusterList {
   repeated Cluster items = 1;
 }
 
+message LoggingCluster {
+  string id = 1;
+  string name = 2;
+  string opensearchUserID = 3;
+  map<string, string> labels = 4;
+}
+
+message LoggingClusterList {
+  repeated LoggingCluster items = 1;
+}
+
 message LabelSelector { 
   map<string, string> matchLabels = 1; 
   repeated LabelSelectorRequirement matchExpressions = 2;
@@ -84,4 +95,24 @@ message ReferenceList {
 
 message SubjectAccessRequest {
   string subject = 1;
+}
+
+message OpensearchUser {
+  string id = 1;
+  string secret = 2;
+}
+
+message OpensearchNodePool {
+  string name = 1;
+  int32 replicas = 2;
+  int32 diskSize = 3;
+  int32 cpu = 4;
+  int32 memory = 5;
+  map<string, string> nodeSelector = 6;
+  repeated string roles = 7;
+}
+
+message OpensearchCluster {
+  string version = 1;
+  repeated OpensearchNodePool nodepools = 2; 
 }

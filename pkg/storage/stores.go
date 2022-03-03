@@ -9,7 +9,9 @@ import (
 	"github.com/rancher/opni-monitoring/pkg/keyring"
 )
 
-var ErrNotFound = errors.New("not found")
+var (
+	ErrNotFound = errors.New("not found")
+)
 
 type TokenStore interface {
 	CreateToken(ctx context.Context, ttl time.Duration, labels map[string]string) (*core.BootstrapToken, error)
@@ -26,6 +28,15 @@ type ClusterStore interface {
 	UpdateCluster(ctx context.Context, cluster *core.Cluster) (*core.Cluster, error)
 	ListClusters(ctx context.Context, matchLabels *core.LabelSelector, matchOptions core.MatchOptions) (*core.ClusterList, error)
 	KeyringStore(ctx context.Context, ref *core.Reference) (KeyringStore, error)
+}
+
+type LoggingClusterStore interface {
+	CreateCluster(ctx context.Context, cluster *core.LoggingCluster) error
+	DeleteCluster(ctx context.Context, ref *core.Reference) error
+	GetCluster(ctx context.Context, ref *core.Reference) (*core.LoggingCluster, error)
+	UpdateCluster(ctx context.Context, cluster *core.LoggingCluster) (*core.LoggingCluster, error)
+	ListClusters(ctx context.Context, matchLabels *core.LabelSelector, matchOptions core.MatchOptions) (*core.LoggingClusterList, error)
+	OpensearchUserStore(ctx context.Context) (OpensearchUserStore, error)
 }
 
 type RBACStore interface {
@@ -52,4 +63,9 @@ type KeyValueStore interface {
 
 type KeyValueStoreBroker interface {
 	NewKeyValueStore(namespace string) (KeyValueStore, error)
+}
+
+type OpensearchUserStore interface {
+	Put(ctx context.Context, user *core.OpensearchUser) error
+	Get(ctx context.Context, ref *core.Reference) (*core.OpensearchUser, error)
 }
