@@ -3,9 +3,9 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=generator content="Hugo 0.91.2">
-<link rel=alternate type=application/rss+xml href=https://rancher.github.io/opni-monitoring/authentication/index.xml>
-<link rel=alternate type=text/html href=https://rancher.github.io/opni-monitoring/authentication/_print/>
-<meta name=robots content="index, follow">
+<link rel=canonical type=text/html href=https://rancher.github.io/opni-monitoring/guides/>
+<link rel=alternate type=application/rss+xml href=https://rancher.github.io/opni-monitoring/guides/index.xml>
+<meta name=robots content="noindex, nofollow">
 <link rel="shortcut icon" href=/opni-monitoring/favicons/favicon.ico>
 <link rel=apple-touch-icon href=/opni-monitoring/favicons/apple-touch-icon-180x180.png sizes=180x180>
 <link rel=icon type=image/png href=/opni-monitoring/favicons/favicon-16x16.png sizes=16x16>
@@ -16,15 +16,15 @@
 <link rel=icon type=image/png href=/opni-monitoring/favicons/android-96x96.png sizes=96x96>
 <link rel=icon type=image/png href=/opni-monitoring/favicons/android-144x144.png sizes=144x144>
 <link rel=icon type=image/png href=/opni-monitoring/favicons/android-192x192.png sizes=192x192>
-<title>Authentication Strategies | Opni Monitoring</title>
+<title>Guides | Opni Monitoring</title>
 <meta name=description content>
-<meta property="og:title" content="Authentication Strategies">
+<meta property="og:title" content="Guides">
 <meta property="og:description" content="Opni Monitoring Documentation">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://rancher.github.io/opni-monitoring/authentication/"><meta property="og:site_name" content="Opni Monitoring">
-<meta itemprop=name content="Authentication Strategies">
+<meta property="og:url" content="https://rancher.github.io/opni-monitoring/guides/"><meta property="og:site_name" content="Opni Monitoring">
+<meta itemprop=name content="Guides">
 <meta itemprop=description content="Opni Monitoring Documentation"><meta name=twitter:card content="summary">
-<meta name=twitter:title content="Authentication Strategies">
+<meta name=twitter:title content="Guides">
 <meta name=twitter:description content="Opni Monitoring Documentation">
 <link rel=preload href=/opni-monitoring/scss/main.min.01e4803b6505aa3ad0dd8dadb1a77805e73e21acd9732936c2baec87e1d88bc9.css as=style>
 <link href=/opni-monitoring/scss/main.min.01e4803b6505aa3ad0dd8dadb1a77805e73e21acd9732936c2baec87e1d88bc9.css rel=stylesheet integrity>
@@ -51,82 +51,41 @@
 <div class="container-fluid td-outer">
 <div class=td-main>
 <div class="row flex-xl-nowrap">
-<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
-<div id=td-sidebar-menu class=td-sidebar__inner>
-<form class="td-sidebar__search d-flex align-items-center">
-<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.2d90b90bbc0ec3d011bd973fe9bb292d.json data-offline-search-base-href=/ data-offline-search-max-results=10>
-<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
-</button>
-</form>
-<nav class="collapse td-sidebar-nav" id=td-section-nav>
-<ul class="td-sidebar-nav__section pr-md-3 ul-0">
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-opni-monitoring-li>
-<a href=/opni-monitoring/ title class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-opni-monitoring><span>Overview</span></a>
-<ul class=ul-1>
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringarchitecture-li>
-<a href=/opni-monitoring/architecture/ title class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringarchitecture><span>Architecture</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringquickstart-li>
-<a href=/opni-monitoring/quickstart/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringquickstart><span>Quick Start</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-opni-monitoringguides-li>
-<a href=/opni-monitoring/guides/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringguides><span>Guides</span></a>
-<ul class="ul-2 foldable">
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesaccess_control-li>
-<a href=/opni-monitoring/guides/access_control/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesaccess_control><span>Access Control</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesgrafana-li>
-<a href=/opni-monitoring/guides/grafana/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesgrafana><span>Accessing Grafana</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesadding_clusters-li>
-<a href=/opni-monitoring/guides/adding_clusters/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesadding_clusters><span>Managing Clusters</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesmanaging_tokens-li>
-<a href=/opni-monitoring/guides/managing_tokens/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesmanaging_tokens><span>Managing Tokens</span></a>
-</li>
-</ul>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringinstallation-li>
-<a href=/opni-monitoring/installation/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringinstallation><span>Installation</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-opni-monitoringauthentication-li>
-<a href=/opni-monitoring/authentication/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringauthentication><span class=td-sidebar-nav-active-item>Authentication Strategies</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringconfiguration-li>
-<a href=/opni-monitoring/configuration/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringconfiguration><span>Advanced Configuration</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringtroubleshooting-li>
-<a href=/opni-monitoring/troubleshooting/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringtroubleshooting><span>Troubleshooting</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-opni-monitoringreference-li>
-<a href=/opni-monitoring/reference/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringreference><span>Reference</span></a>
-<ul class="ul-2 foldable">
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringreferenceterminology-li>
-<a href=/opni-monitoring/reference/terminology/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringreferenceterminology><span>Terminology</span></a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</aside>
-<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
-<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-<a href=https://github.com/rancher/opni-monitoring-docs/tree/main/content/en/authentication/_index.md class=td-page-meta--view target=_blank rel=noopener><i class="fa fa-file-alt fa-fw"></i> View page source</a>
-<a href=https://github.com/rancher/opni-monitoring-docs/edit/main/content/en/authentication/_index.md class=td-page-meta--edit target=_blank rel=noopener><i class="fa fa-edit fa-fw"></i> Edit this page</a>
-<a href="https://github.com/rancher/opni-monitoring-docs/new/main/content/en/authentication/_index.md?filename=change-me.md&value=---%0Atitle%3A+%22Long+Page+Title%22%0AlinkTitle%3A+%22Short+Nav+Title%22%0Aweight%3A+100%0Adescription%3A+%3E-%0A+++++Page+description+for+heading+and+indexes.%0A---%0A%0A%23%23+Heading%0A%0AEdit+this+template+to+create+your+new+page.%0A%0A%2A+Give+it+a+good+name%2C+ending+in+%60.md%60+-+e.g.+%60getting-started.md%60%0A%2A+Edit+the+%22front+matter%22+section+at+the+top+of+the+page+%28weight+controls+how+its+ordered+amongst+other+pages+in+the+same+directory%3B+lowest+number+first%29.%0A%2A+Add+a+good+commit+message+at+the+bottom+of+the+page+%28%3C80+characters%3B+use+the+extended+description+field+for+more+detail%29.%0A%2A+Create+a+new+branch+so+you+can+preview+your+new+file+and+request+a+review+via+Pull+Request.%0A" class=td-page-meta--child target=_blank rel=noopener><i class="fa fa-edit fa-fw"></i> Create child page</a>
-<a href="https://github.com/rancher/opni-monitoring-docs/issues/new?title=Authentication%20Strategies" class=td-page-meta--issue target=_blank rel=noopener><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
-<a href=https://github.com/rancher/opni-monitoring/issues/new class=td-page-meta--project-issue target=_blank rel=noopener><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
-<a id=print href=https://rancher.github.io/opni-monitoring/authentication/_print/><i class="fa fa-print fa-fw"></i> Print entire section</a>
-</div>
-</aside>
 <main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
-<nav aria-label=breadcrumb class="td-breadcrumbs td-breadcrumbs__single">
-<ol class=breadcrumb>
-<li class="breadcrumb-item active" aria-current=page>
-<a href=https://rancher.github.io/opni-monitoring/authentication/>Authentication Strategies</a>
-</li>
-</ol>
-</nav>
 <div class=td-content>
-<h1>Authentication Strategies</h1>
-<header class=article-meta>
-</header>
-<div class="text-muted mt-5 pt-3 border-top">
-Last modified March 26, 2022: <a href=https://github.com/rancher/opni-monitoring-docs/commit/0436bce56c120818cbb2f32dea23f5ca3b2cdd52>docs initial commit (0436bce)</a>
+<div class="pageinfo pageinfo-primary d-print-none">
+<p>
+This is the multi-page printable view of this section.
+<a href=# onclick="return print(),!1">Click here to print</a>.
+</p><p>
+<a href=/opni-monitoring/guides/>Return to the regular view of this page</a>.
+</p>
 </div>
+<h1 class=title>Guides</h1>
+<ul>
+<li>1: <a href=#pg-0f2720d8e2fe41ff0e2939e69d66d7c7>Access Control</a></li>
+<li>2: <a href=#pg-b17e1182d1b508761980e49263c3f90a>Accessing Grafana</a></li>
+<li>3: <a href=#pg-8140623d302ef49d397231458d922ecb>Managing Clusters</a></li>
+<li>4: <a href=#pg-4db549f610f434f55c028acc4131d8ad>Managing Tokens</a></li>
+</ul>
+<div class=content>
+</div>
+</div>
+<div class=td-content>
+<h1 id=pg-0f2720d8e2fe41ff0e2939e69d66d7c7>1 - Access Control</h1>
+<div class=lead>Configuring role-based access to clusters</div>
+</div>
+<div class=td-content style=page-break-before:always>
+<h1 id=pg-b17e1182d1b508761980e49263c3f90a>2 - Accessing Grafana</h1>
+<div class=lead>Grafana access and permissions</div>
+</div>
+<div class=td-content style=page-break-before:always>
+<h1 id=pg-8140623d302ef49d397231458d922ecb>3 - Managing Clusters</h1>
+<div class=lead>Creating and deleting clusters, and adding capabilities to existing clusters</div>
+</div>
+<div class=td-content style=page-break-before:always>
+<h1 id=pg-4db549f610f434f55c028acc4131d8ad>4 - Managing Tokens</h1>
+<div class=lead>How to create and manage bootstrap tokens</div>
 </div>
 </main>
 </div>

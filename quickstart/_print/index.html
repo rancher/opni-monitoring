@@ -44,7 +44,7 @@
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.a72c94b33549cfc888d1aa21a01f457e.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.2d90b90bbc0ec3d011bd973fe9bb292d.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -65,10 +65,10 @@ This is the multi-page printable view of this section.
 <ul>
 </ul>
 <div class=content>
-<p>This guide will walk you through setting up a &ldquo;demo&rdquo; Opni Monitoring installation. This setup is <em>not</em> production-ready. If that is what you are looking for, check out the full <a href=/installation>Installation</a> guide.</p>
+<p>This guide will walk you through setting up a &ldquo;demo&rdquo; Opni Monitoring installation. This setup is <em>not</em> production-ready. If that is what you are looking for, check out the full <a href=../installation>Installation</a> guide.</p>
 <div class="alert alert-info" role=alert>
 <h4 class=alert-heading>Important</h4>
-Before proceeding, please read the section on <a href=/architecture/terminology>Terminology</a> to familiarize yourself with a few key terms.
+Before proceeding, please read the section on <a href=../reference/terminology>Terminology</a> to familiarize yourself with a few key terms.
 </div>
 <h2 id=prerequisites>Prerequisites</h2>
 <h3 id=infrastructure>Infrastructure</h3>
@@ -174,7 +174,7 @@ Before proceeding, please read the section on <a href=/architecture/terminology>
 </ol>
 <div class="alert alert-warning" role=alert>
 <h4 class=alert-heading>Token Expiration</h4>
-All tokens will expire after a certain amount of time. The default value is 10 minutes.
+All tokens will expire after a certain amount of time. The default value is 10 minutes, but you can choose any duration you like. If your token expires, you can simply create a new one.
 </div>
 <h4 id=add-a-cluster>Add a cluster</h4>
 <ol>
@@ -202,7 +202,17 @@ All tokens will expire after a certain amount of time. The default value is 10 m
 <li>
 <p>In a few seconds, you should see a green banner informing you that the cluster has been added. Click <strong>Finish</strong> to return to the cluster list.</p>
 </li>
+<li>
+<p>Repeat the above steps for any additional clusters you want to add.</p>
+</li>
 </ol>
+<h4 id=next-steps>Next Steps</h4>
+<p>Read the section on <a href=../guides/access_control>Access Control</a> to learn how to configure roles and role bindings. Then, head to <br> <code>https://grafana.&lt;gateway_address></code> in your browser to sign in.</p>
+<div class="alert alert-warning" role=alert>
+<h4 class=alert-heading>Demo Authentication</h4>
+With the demo setup, there is no authentication - when signing in to Grafana, you will instead be presented with a list of all known users in the system (the set of all subjects in the current list of role bindings) and can choose any user to view metrics from the perspective of that user.
+</div>
+<p>Check out the <a href=../guides>Guides</a> section for more. Happy monitoring!</p>
 </div>
 </div>
 </main>

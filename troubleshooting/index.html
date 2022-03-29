@@ -44,7 +44,7 @@
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.a72c94b33549cfc888d1aa21a01f457e.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.2d90b90bbc0ec3d011bd973fe9bb292d.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -54,7 +54,7 @@
 <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
 <div id=td-sidebar-menu class=td-sidebar__inner>
 <form class="td-sidebar__search d-flex align-items-center">
-<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.a72c94b33549cfc888d1aa21a01f457e.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.2d90b90bbc0ec3d011bd973fe9bb292d.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
 </button>
 </form>
@@ -63,15 +63,23 @@
 <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-opni-monitoring-li>
 <a href=/opni-monitoring/ title class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-opni-monitoring><span>Overview</span></a>
 <ul class=ul-1>
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-opni-monitoringarchitecture-li>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringarchitecture-li>
 <a href=/opni-monitoring/architecture/ title class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringarchitecture><span>Architecture</span></a>
-<ul class="ul-2 foldable">
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringarchitectureterminology-li>
-<a href=/opni-monitoring/architecture/terminology/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringarchitectureterminology><span>Terminology</span></a>
-</li>
-</ul>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringquickstart-li>
 <a href=/opni-monitoring/quickstart/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringquickstart><span>Quick Start</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-opni-monitoringguides-li>
+<a href=/opni-monitoring/guides/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringguides><span>Guides</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesaccess_control-li>
+<a href=/opni-monitoring/guides/access_control/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesaccess_control><span>Access Control</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesgrafana-li>
+<a href=/opni-monitoring/guides/grafana/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesgrafana><span>Accessing Grafana</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesadding_clusters-li>
+<a href=/opni-monitoring/guides/adding_clusters/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesadding_clusters><span>Managing Clusters</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesmanaging_tokens-li>
+<a href=/opni-monitoring/guides/managing_tokens/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesmanaging_tokens><span>Managing Tokens</span></a>
+</li>
+</ul>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringinstallation-li>
 <a href=/opni-monitoring/installation/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringinstallation><span>Installation</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringauthentication-li>
@@ -80,8 +88,13 @@
 <a href=/opni-monitoring/configuration/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringconfiguration><span>Advanced Configuration</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-opni-monitoringtroubleshooting-li>
 <a href=/opni-monitoring/troubleshooting/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringtroubleshooting><span class=td-sidebar-nav-active-item>Troubleshooting</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringreference-li>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-opni-monitoringreference-li>
 <a href=/opni-monitoring/reference/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringreference><span>Reference</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringreferenceterminology-li>
+<a href=/opni-monitoring/reference/terminology/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringreferenceterminology><span>Terminology</span></a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -112,7 +125,7 @@
 <header class=article-meta>
 </header>
 <div class="text-muted mt-5 pt-3 border-top">
-Last modified March 26, 2022: <a href=https://github.com/rancher/opni-monitoring-docs/commit/0b174090500c5c0ab4887b1a08e1d0d7e68d77a4>docs initial commit (0b17409)</a>
+Last modified March 26, 2022: <a href=https://github.com/rancher/opni-monitoring-docs/commit/0436bce56c120818cbb2f32dea23f5ca3b2cdd52>docs initial commit (0436bce)</a>
 </div>
 </div>
 </main>

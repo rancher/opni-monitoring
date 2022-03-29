@@ -47,7 +47,7 @@
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.a72c94b33549cfc888d1aa21a01f457e.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.2d90b90bbc0ec3d011bd973fe9bb292d.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -66,7 +66,6 @@ This is the multi-page printable view of this section.
 </div>
 <h1 class=title></h1>
 <ul>
-<li>1: <a href=#pg-4c163f52b5d4c312d89eff41783b2f2a>Terminology</a></li>
 </ul>
 <div class=content>
 <style>.td-sidebar-toc{display:none!important}.diagram{padding-right:20px}</style>
@@ -112,29 +111,6 @@ A production deployment of Opni Monitoring should be configured to use long-term
 could be an S3-compatible object storage service.
 </p>
 </body>
-</div>
-</div>
-<div class=td-content style=page-break-before:always>
-<h1 id=pg-4c163f52b5d4c312d89eff41783b2f2a>1 - Terminology</h1>
-<div class=lead>Definitions of commonly used terms and phrases</div>
-<p>It is important to understand the following terms and phrases before you get started with Opni Monitoring:</p>
-<h3 id=multi-cluster>Multi-Cluster</h3>
-<p>Multi-Cluster (as in &ldquo;multi-cluster monitoring&rdquo;) refers to operations that involve multiple independent Kubernetes clusters.</p>
-<h3 id=multi-tenantmulti-tenancy>Multi-Tenant/Multi-Tenancy</h3>
-<p>A <em>tenant</em> refers to a user or group of users who share a common access with specific privileges to the software/data instance.</p>
-<p>In the context of Opni Monitoring, &ldquo;multi-tenancy&rdquo; refers to the feature that allows multiple users to each have access to a different arbitrary subset of all available data.</p>
-<div class="alert alert-warning" role=alert>
-<h4 class=alert-heading>Important</h4>
-<p>In the Cortex documentation, the terms &ldquo;tenant&rdquo;, &ldquo;user&rdquo;, and &ldquo;org&rdquo; are used interchangeably, and all refer to what Opni Monitoring calls &ldquo;clusters&rdquo;.</p>
-<p>In Cortex terminology, &ldquo;multi-tenancy&rdquo; refers to the ability to federate a single request across multiple [cortex] tenants (where &ldquo;federation&rdquo; refers to the aggregation of the results of several individual requests to appear as one).</p>
-</div>
-<h3 id=mainupstreamopni-monitoring-cluster>(Main|Upstream|Opni Monitoring) Cluster</h3>
-<p>&ldquo;Main Cluster&rdquo;, &ldquo;Upstream Cluster&rdquo;, and &ldquo;Opni Monitoring Cluster&rdquo; all refer to the cluster where Opni Gateway, Cortex, and Grafana are installed. Metrics from all clusters are sent to the Opni Gateway in this cluster, and are processed and stored by Cortex.</p>
-<h3 id=downstream-cluster>Downstream Cluster</h3>
-<p>This refers to a cluster running the Opni Agent and Prometheus Agent which sends all its metrics (using Prometheus Remote-Write) to the main cluster.</p>
-<div class="alert alert-info" role=alert>
-<h4 class=alert-heading>Note</h4>
-The Opni Agent and Prometheus Agent are often also installed into the main cluster, to scrape metrics from the Opni Gateway and Cortex. However, we would still refer to that cluster as the main cluster.
 </div>
 </div>
 </main>
