@@ -44,7 +44,7 @@
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.1f50e4ee970092c6a40814a3e5d06506.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.6afe676b8808464255d47bffdf6e3ee7.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -118,6 +118,36 @@ This is the multi-page printable view of this section.
 <div class=td-content style=page-break-before:always>
 <h1 id=pg-8140623d302ef49d397231458d922ecb>3 - Managing Clusters</h1>
 <div class=lead>Creating and deleting clusters, and adding capabilities to existing clusters</div>
+<h3 id=cluster-capabilities>Cluster Capabilities</h3>
+<p>Each cluster in Opni Monitoring has a set of capabilities that correspond to the high-level features available to that cluster. Currently, there are two capabilities: <code>metrics</code> and <code>logs</code>. A cluster can have one or both of these capabilities. When adding a cluster, depending on the capability you select, different features will be available.</p>
+<h3 id=adding-a-new-cluster>Adding a new cluster</h3>
+<h4 id=prerequisites>Prerequisites</h4>
+<ol>
+<li>The new cluster must be able to reach the Opni Gateway API endpoint.</li>
+<li>You have previously created a token to use for the new cluster. Reusing the same token for multiple clusters is fine, as long as it has not yet expired.</li>
+</ol>
+<h4 id=installation>Installation</h4>
+<p>Adding a new downstream cluster will require installing Kubernetes resources in that cluster. Different capabilities will install different resources. Use the Opni Monitoring dashboard to set up the new cluster by following the steps below:</p>
+<ol>
+<li>Navigate to the <strong>Clusters</strong> tab in the sidebar</li>
+<li>Click <strong>Add Cluster</strong></li>
+<li>In the <strong>Capabilities</strong> drop-down menu, select the capability you want to install.</li>
+<li>Choose an available token from the <strong>Token</strong> drop-down menu. When a capability and token have been selected, an install command will appear below. This command will be specific to the selected capability.</li>
+<li>Depending on the selected capability, some options may appear in the UI above the install command. Changing these options will adjust the install command in some way. If any options are marked with a red asterisk, that indicates the option is required.</li>
+<li>Click on the install command to copy it to the clipboard.</li>
+<li>In a terminal, ensure your <code>KUBECONFIG</code> environment variable or <code>~/.kube/config</code> context points to the new cluster, then paste and run the command.</li>
+<li>In a few seconds, you should see a green banner informing you that the cluster has been added. Click <strong>Finish</strong> to return to the cluster list.</li>
+</ol>
+<h3 id=adding-a-new-capability-to-an-existing-cluster>Adding a new capability to an existing cluster</h3>
+<p>The process of adding a new capability to an already existing cluster is similar to the process of adding a new cluster. The main difference is that there are additional requirements for the token you choose.</p>
+<h4 id=join-tokens>Join Tokens</h4>
+<p>When a token is used to add a cluster, the token permanently gains the <code>join</code> capability for that cluster. This can be seen in the tokens list after adding a cluster. The capability is displayed in the UI as <code>join:</code> followed by the first 8 characters of the cluster ID. A token with the <code>join</code> capability for a cluster may be used to add additional capabilities to that cluster.</p>
+<p>If the token originally used to create the cluster expired or was deleted, you can create a new join token in the UI. To do this:</p>
+<ol>
+<li>Navigate to the <strong>Tokens</strong> tab in the sidebar</li>
+<li>Click <strong>Create Token</strong></li>
+<li>Under &ldquo;Extended Capabilities&rdquo;, select <strong>Join Existing Cluster</strong>, then click <strong>Create</strong>. The new token will be created with the <code>join</code> capability for the cluster you selected.</li>
+</ol>
 </div>
 <div class=td-content style=page-break-before:always>
 <h1 id=pg-4db549f610f434f55c028acc4131d8ad>4 - Managing Tokens</h1>
