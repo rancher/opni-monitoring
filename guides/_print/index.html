@@ -44,7 +44,7 @@
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.6afe676b8808464255d47bffdf6e3ee7.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.adc9a80c68268865c4906399e7f0d829.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -65,8 +65,7 @@ This is the multi-page printable view of this section.
 <ul>
 <li>1: <a href=#pg-0f2720d8e2fe41ff0e2939e69d66d7c7>Access Control</a></li>
 <li>2: <a href=#pg-b17e1182d1b508761980e49263c3f90a>Accessing Grafana</a></li>
-<li>3: <a href=#pg-8140623d302ef49d397231458d922ecb>Managing Clusters</a></li>
-<li>4: <a href=#pg-4db549f610f434f55c028acc4131d8ad>Managing Tokens</a></li>
+<li>3: <a href=#pg-a89a09aa479eb49788ccd0ed9757482b>Managing Clusters</a></li>
 </ul>
 <div class=content>
 </div>
@@ -116,7 +115,7 @@ This is the multi-page printable view of this section.
 <div class=lead>Grafana access and permissions</div>
 </div>
 <div class=td-content style=page-break-before:always>
-<h1 id=pg-8140623d302ef49d397231458d922ecb>3 - Managing Clusters</h1>
+<h1 id=pg-a89a09aa479eb49788ccd0ed9757482b>3 - Managing Clusters</h1>
 <div class=lead>Creating and deleting clusters, and adding capabilities to existing clusters</div>
 <h3 id=cluster-capabilities>Cluster Capabilities</h3>
 <p>Each cluster in Opni Monitoring has a set of capabilities that correspond to the high-level features available to that cluster. Currently, there are two capabilities: <code>metrics</code> and <code>logs</code>. A cluster can have one or both of these capabilities. When adding a cluster, depending on the capability you select, different features will be available.</p>
@@ -148,10 +147,16 @@ This is the multi-page printable view of this section.
 <li>Click <strong>Create Token</strong></li>
 <li>Under &ldquo;Extended Capabilities&rdquo;, select <strong>Join Existing Cluster</strong>, then click <strong>Create</strong>. The new token will be created with the <code>join</code> capability for the cluster you selected.</li>
 </ol>
-</div>
-<div class=td-content style=page-break-before:always>
-<h1 id=pg-4db549f610f434f55c028acc4131d8ad>4 - Managing Tokens</h1>
-<div class=lead>How to create and manage bootstrap tokens</div>
+<h3 id=deleting-a-cluster>Deleting a cluster</h3>
+<p>To remove a cluster from Opni Monitoring, select the cluster or clusters you wish to delete from the clusters list and click <strong>Delete</strong>. Once deleted, the downstream cluster will no longer have permissions to access the Opni Gateway API and forward metrics or other data.</p>
+<p>Currently, the following limitations apply with regards to deleting clusters:</p>
+<ul>
+<li>Deleting a cluster will not delete any of its stored metrics.</li>
+<li>Deleting a cluster will not uninstall any resources from the downstream Kubernetes cluster.</li>
+</ul>
+<h4 id=cleaning-up-a-deleted-cluster>Cleaning up a deleted Cluster</h4>
+<p>To clean up Kubernetes resources in a deleted downstream cluster, simply delete the <code>opni-monitoring-agent</code> namespace. It may take a while for all resources in the namespace to be fully deleted.</p>
+<p>Alternatively, uninstalling the <code>opni-monitoring-agent</code> helm chart and deleting the <code>keyring-agent-&lt;cluster-id></code> secret will have the same effect.</p>
 </div>
 </main>
 </div>

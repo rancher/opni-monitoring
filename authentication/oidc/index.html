@@ -14,20 +14,20 @@
 <link rel=icon type=image/png href=/opni-monitoring/favicons/android-96x96.png sizes=96x96>
 <link rel=icon type=image/png href=/opni-monitoring/favicons/android-144x144.png sizes=144x144>
 <link rel=icon type=image/png href=/opni-monitoring/favicons/android-192x192.png sizes=192x192>
-<title>Managing Tokens | Opni Monitoring</title>
-<meta name=description content="How to create and manage bootstrap tokens">
-<meta property="og:title" content="Managing Tokens">
-<meta property="og:description" content="How to create and manage bootstrap tokens">
+<title>OpenID Connect | Opni Monitoring</title>
+<meta name=description content="Using OpenID Connect with Opni Monitoring">
+<meta property="og:title" content="OpenID Connect">
+<meta property="og:description" content="Using OpenID Connect with Opni Monitoring">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://rancher.github.io/opni-monitoring/guides/managing_tokens/"><meta property="article:section" content="guides">
-<meta property="article:modified_time" content="2022-03-29T13:24:30-04:00"><meta property="og:site_name" content="Opni Monitoring">
-<meta itemprop=name content="Managing Tokens">
-<meta itemprop=description content="How to create and manage bootstrap tokens">
-<meta itemprop=dateModified content="2022-03-29T13:24:30-04:00">
-<meta itemprop=wordCount content="0">
+<meta property="og:url" content="https://rancher.github.io/opni-monitoring/authentication/oidc/"><meta property="article:section" content="authentication">
+<meta property="article:modified_time" content="2022-03-30T13:09:52-04:00"><meta property="og:site_name" content="Opni Monitoring">
+<meta itemprop=name content="OpenID Connect">
+<meta itemprop=description content="Using OpenID Connect with Opni Monitoring">
+<meta itemprop=dateModified content="2022-03-30T13:09:52-04:00">
+<meta itemprop=wordCount content="203">
 <meta itemprop=keywords content><meta name=twitter:card content="summary">
-<meta name=twitter:title content="Managing Tokens">
-<meta name=twitter:description content="How to create and manage bootstrap tokens">
+<meta name=twitter:title content="OpenID Connect">
+<meta name=twitter:description content="Using OpenID Connect with Opni Monitoring">
 <link rel=preload href=/opni-monitoring/scss/main.min.01e4803b6505aa3ad0dd8dadb1a77805e73e21acd9732936c2baec87e1d88bc9.css as=style>
 <link href=/opni-monitoring/scss/main.min.01e4803b6505aa3ad0dd8dadb1a77805e73e21acd9732936c2baec87e1d88bc9.css rel=stylesheet integrity>
 <script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
@@ -46,7 +46,7 @@
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.6afe676b8808464255d47bffdf6e3ee7.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.adc9a80c68268865c4906399e7f0d829.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -56,7 +56,7 @@
 <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
 <div id=td-sidebar-menu class=td-sidebar__inner>
 <form class="td-sidebar__search d-flex align-items-center">
-<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.6afe676b8808464255d47bffdf6e3ee7.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.adc9a80c68268865c4906399e7f0d829.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
 </button>
 </form>
@@ -69,23 +69,26 @@
 <a href=/opni-monitoring/architecture/ title class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringarchitecture><span>Architecture</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringquickstart-li>
 <a href=/opni-monitoring/quickstart/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringquickstart><span>Quick Start</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-opni-monitoringguides-li>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-opni-monitoringguides-li>
 <a href=/opni-monitoring/guides/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringguides><span>Guides</span></a>
 <ul class="ul-2 foldable">
 <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesaccess_control-li>
 <a href=/opni-monitoring/guides/access_control/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesaccess_control><span>Access Control</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesgrafana-li>
 <a href=/opni-monitoring/guides/grafana/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesgrafana><span>Accessing Grafana</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesadding_clusters-li>
-<a href=/opni-monitoring/guides/adding_clusters/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesadding_clusters><span>Managing Clusters</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-opni-monitoringguidesmanaging_tokens-li>
-<a href=/opni-monitoring/guides/managing_tokens/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesmanaging_tokens><span class=td-sidebar-nav-active-item>Managing Tokens</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringguidesclusters-li>
+<a href=/opni-monitoring/guides/clusters/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringguidesclusters><span>Managing Clusters</span></a>
 </li>
 </ul>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringinstallation-li>
 <a href=/opni-monitoring/installation/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringinstallation><span>Installation</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringauthentication-li>
-<a href=/opni-monitoring/authentication/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringauthentication><span>Authentication Strategies</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-opni-monitoringauthentication-li>
+<a href=/opni-monitoring/authentication/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringauthentication><span>Authentication</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-opni-monitoringauthenticationoidc-li>
+<a href=/opni-monitoring/authentication/oidc/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-opni-monitoringauthenticationoidc><span class=td-sidebar-nav-active-item>OpenID Connect</span></a>
+</li>
+</ul>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringconfiguration-li>
 <a href=/opni-monitoring/configuration/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-opni-monitoringconfiguration><span>Advanced Configuration</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-opni-monitoringtroubleshooting-li>
@@ -106,32 +109,98 @@
 </aside>
 <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
 <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-<a href=https://github.com/rancher/opni-monitoring-docs/tree/main/content/en/guides/managing_tokens.md class=td-page-meta--view target=_blank rel=noopener><i class="fa fa-file-alt fa-fw"></i> View page source</a>
-<a href=https://github.com/rancher/opni-monitoring-docs/edit/main/content/en/guides/managing_tokens.md class=td-page-meta--edit target=_blank rel=noopener><i class="fa fa-edit fa-fw"></i> Edit this page</a>
-<a href="https://github.com/rancher/opni-monitoring-docs/new/main/content/en/guides/managing_tokens.md?filename=change-me.md&value=---%0Atitle%3A+%22Long+Page+Title%22%0AlinkTitle%3A+%22Short+Nav+Title%22%0Aweight%3A+100%0Adescription%3A+%3E-%0A+++++Page+description+for+heading+and+indexes.%0A---%0A%0A%23%23+Heading%0A%0AEdit+this+template+to+create+your+new+page.%0A%0A%2A+Give+it+a+good+name%2C+ending+in+%60.md%60+-+e.g.+%60getting-started.md%60%0A%2A+Edit+the+%22front+matter%22+section+at+the+top+of+the+page+%28weight+controls+how+its+ordered+amongst+other+pages+in+the+same+directory%3B+lowest+number+first%29.%0A%2A+Add+a+good+commit+message+at+the+bottom+of+the+page+%28%3C80+characters%3B+use+the+extended+description+field+for+more+detail%29.%0A%2A+Create+a+new+branch+so+you+can+preview+your+new+file+and+request+a+review+via+Pull+Request.%0A" class=td-page-meta--child target=_blank rel=noopener><i class="fa fa-edit fa-fw"></i> Create child page</a>
-<a href="https://github.com/rancher/opni-monitoring-docs/issues/new?title=Managing%20Tokens" class=td-page-meta--issue target=_blank rel=noopener><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+<a href=https://github.com/rancher/opni-monitoring-docs/tree/main/content/en/authentication/oidc.md class=td-page-meta--view target=_blank rel=noopener><i class="fa fa-file-alt fa-fw"></i> View page source</a>
+<a href=https://github.com/rancher/opni-monitoring-docs/edit/main/content/en/authentication/oidc.md class=td-page-meta--edit target=_blank rel=noopener><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+<a href="https://github.com/rancher/opni-monitoring-docs/new/main/content/en/authentication/oidc.md?filename=change-me.md&value=---%0Atitle%3A+%22Long+Page+Title%22%0AlinkTitle%3A+%22Short+Nav+Title%22%0Aweight%3A+100%0Adescription%3A+%3E-%0A+++++Page+description+for+heading+and+indexes.%0A---%0A%0A%23%23+Heading%0A%0AEdit+this+template+to+create+your+new+page.%0A%0A%2A+Give+it+a+good+name%2C+ending+in+%60.md%60+-+e.g.+%60getting-started.md%60%0A%2A+Edit+the+%22front+matter%22+section+at+the+top+of+the+page+%28weight+controls+how+its+ordered+amongst+other+pages+in+the+same+directory%3B+lowest+number+first%29.%0A%2A+Add+a+good+commit+message+at+the+bottom+of+the+page+%28%3C80+characters%3B+use+the+extended+description+field+for+more+detail%29.%0A%2A+Create+a+new+branch+so+you+can+preview+your+new+file+and+request+a+review+via+Pull+Request.%0A" class=td-page-meta--child target=_blank rel=noopener><i class="fa fa-edit fa-fw"></i> Create child page</a>
+<a href="https://github.com/rancher/opni-monitoring-docs/issues/new?title=OpenID%20Connect" class=td-page-meta--issue target=_blank rel=noopener><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href=https://github.com/rancher/opni-monitoring/issues/new class=td-page-meta--project-issue target=_blank rel=noopener><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
-<a id=print href=https://rancher.github.io/opni-monitoring/guides/_print/><i class="fa fa-print fa-fw"></i> Print entire section</a>
+<a id=print href=https://rancher.github.io/opni-monitoring/authentication/_print/><i class="fa fa-print fa-fw"></i> Print entire section</a>
 </div>
 </aside>
 <main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
 <nav aria-label=breadcrumb class=td-breadcrumbs>
 <ol class=breadcrumb>
 <li class=breadcrumb-item>
-<a href=https://rancher.github.io/opni-monitoring/guides/>Guides</a>
+<a href=https://rancher.github.io/opni-monitoring/authentication/>Authentication</a>
 </li>
 <li class="breadcrumb-item active" aria-current=page>
-<a href=https://rancher.github.io/opni-monitoring/guides/managing_tokens/>Managing Tokens</a>
+<a href=https://rancher.github.io/opni-monitoring/authentication/oidc/>OpenID Connect</a>
 </li>
 </ol>
 </nav>
 <div class=td-content>
-<h1>Managing Tokens</h1>
-<div class=lead>How to create and manage bootstrap tokens</div>
+<h1>OpenID Connect</h1>
+<div class=lead>Using OpenID Connect with Opni Monitoring</div>
 <header class=article-meta>
 </header>
+<p>Opni Monitoring supports OpenID Connect for generic user authentication and authorization. Any OpenID Connect provider can be used.</p>
+<h4 id=configure-your-openid-provider>Configure your OpenID Provider</h4>
+<ol>
+<li>Create a new client ID and secret.</li>
+<li>Set an allowed callback URL to <code>https://grafana.&lt;gateway_address>/login/generic_oauth</code></li>
+<li>Set an allowed logout URL to <code>https://grafana.&lt;gateway_address></code></li>
+</ol>
+<h4 id=edit-opni-monitoring-configuration>Edit Opni Monitoring configuration</h4>
+<ol>
+<li>Edit <code>deploy/custom/opni-monitoring.yaml</code> as follows:</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#204a87;font-weight:700>auth</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>provider</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>openid</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>openid</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#000>// discovery and wellKnownConfiguration are mutually exclusive.</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#000>// If the OP (openid provider) has a discovery endpoint, it should be</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#000>// configured in the discovery field, otherwise the well-known configuration</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#000>// fields can be set manually. If set, required fields are listed below.</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>discovery</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#000>// Relative path at which to find the openid configuration.</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#000>// Defaults to &#34;/.well-known/openid-configuration&#34;.</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>path</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;/.well-known/openid-configuration&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#000>// The OP&#39;s Issuer identifier. This must exactly match the issuer URL</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#000>// obtained from the discovery endpoint, and will match the `iss&#39; claim</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#000>// in the ID Tokens issued by the OP.</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>issuer</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#8f5902;font-style:italic># required</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#000>// Optional manually-provided discovery information. Mutually exclusive with </span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#000>// the discovery field (see above). If set, required fields are listed below.</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>wellKnownConfiguration</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>issuer</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>                  </span><span style=color:#8f5902;font-style:italic># required</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>authorization_endpoint</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#8f5902;font-style:italic># required</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>token_endpoint</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>          </span><span style=color:#8f5902;font-style:italic># required</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>userinfo_endpoint</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>       </span><span style=color:#8f5902;font-style:italic># required</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>revocation_endpoint</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>jwks_uri</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>                </span><span style=color:#8f5902;font-style:italic># required</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>scopes_supported</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000;font-weight:700>[]</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>response_types_supported</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000;font-weight:700>[]</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>response_modes_supported</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000;font-weight:700>[]</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>id_token_signing_alg_values_supported</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000;font-weight:700>[]</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>token_endpoint_auth_methods_supported</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000;font-weight:700>[]</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>claims_supported</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000;font-weight:700>[]</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>request_uri_parameter_supported</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#204a87;font-weight:700>false</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#000>// The ID Token claim that will be used to identify users (&#34;sub&#34;, &#34;email&#34;, etc.). </span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#000>// The value of this field will be matched against role binding subject names.</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#000>// Defaults to &#34;sub&#34;.</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>identifyingClaim</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;sub&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></code></pre></div><ol start=2>
+<li>Edit <code>deploy/custom/grafana.yaml</code> according to the documentation at <a href=https://grafana.com/docs/grafana/latest/auth/generic-oauth>https://grafana.com/docs/grafana/latest/auth/generic-oauth</a></li>
+</ol>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#204a87;font-weight:700>grafana.ini</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>auth.generic_oauth</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>client_id</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> 
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>client_secret</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>auth_url</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>token_url</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>api_url</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>signout_redirect_url</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>allowed_domains</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>role_attribute_path</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>use_pkce</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>
+</span></code></pre></div><ol start=3>
+<li>Apply the configuration using <code>helmfile sync</code>.</li>
+</ol>
 <div class="text-muted mt-5 pt-3 border-top">
-Last modified March 29, 2022: <a href=https://github.com/rancher/opni-monitoring-docs/commit/52a66b479de6d00c355e2602b3a4af9fd0f998e9>quick start docs (52a66b4)</a>
+Last modified March 30, 2022: <a href=https://github.com/rancher/opni-monitoring-docs/commit/406a1c6306ed66215873820d2bda6ecc3db681c5>add oauth docs; update architecture diagram (406a1c6)</a>
 </div>
 </div>
 </main>
