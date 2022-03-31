@@ -17,8 +17,7 @@
 <link rel=icon type=image/png href=/opni-monitoring/favicons/android-144x144.png sizes=144x144>
 <link rel=icon type=image/png href=/opni-monitoring/favicons/android-192x192.png sizes=192x192>
 <title>Installation | Opni Monitoring</title>
-<meta name=description content="Coming Soon
-">
+<meta name=description content="This guide will walk you through installing Opni Monitoring and adding clusters to the system. Before proceeding, please read the section on …">
 <meta property="og:title" content="Installation">
 <meta property="og:description" content="Opni Monitoring Documentation">
 <meta property="og:type" content="website">
@@ -45,7 +44,7 @@
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.adc9a80c68268865c4906399e7f0d829.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.4fec66ab31bac307d16f15eadd2d94fb.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -66,7 +65,105 @@ This is the multi-page printable view of this section.
 <ul>
 </ul>
 <div class=content>
-<p>Coming Soon</p>
+<p>This guide will walk you through installing Opni Monitoring and adding clusters to the system. Before proceeding, please read the section on <a href=../reference/terminology>Terminology</a> to familiarize yourself with a few key terms.</p>
+<h2 id=prerequisites>Prerequisites</h2>
+<h3 id=infrastructure>Infrastructure</h3>
+<ul>
+<li>
+<p>One <strong>main</strong> cluster where the Opni Monitoring control-plane components will be installed.</p>
+<ul>
+<li>The main cluster must be accessible to all downstream clusters from a persistent DNS name. For a demo or testing installation, you can use <a href=https://sslip.io>sslip.io</a> if you do not have a domain name available.</li>
+</ul>
+</li>
+<li>
+<p>One or more <strong>downstream</strong> clusters which will be configured to send metrics to the <strong>main</strong> cluster</p>
+</li>
+<li>
+<p>All clusters must have a default storage class available.</p>
+</li>
+</ul>
+<h3 id=dependencies>Dependencies</h3>
+<ul>
+<li>
+<p>Install <a href=https://github.com/roboll/helmfile>helmfile</a> using your distribution&rsquo;s package manager or from the GitHub release page.</p>
+</li>
+<li>
+<p>Clone the opni-monitoring repo:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ git clone https://github.com/rancher/opni-monitoring
+</code></pre></div></li>
+</ul>
+<h2 id=setting-up-the-main-cluster>Setting up the main cluster</h2>
+<h3 id=dns-configuration>DNS Configuration</h3>
+<ol>
+<li>Identify the public DNS name of your main cluster or load balancer. This will be referenced in the following sections as <code>&lt;gateway_address></code>.</li>
+<li>Configure <code>A</code> records such that <code>&lt;gateway_address></code> and <code>grafana.&lt;gateway_address></code> both route to the IP address of your main cluster&rsquo;s load balancer (skip this step if you are using <a href=https://sslip.io>sslip.io</a> or a similar service).</li>
+</ol>
+<h3 id=chart-configuration>Chart configuration</h3>
+<p>Inside the opni-monitoring repo, there are a few template yaml files in <code>deploy/custom</code> which you will need to copy and edit before continuing. These files will be used to configure authentication and Cortex long-term storage.</p>
+<h5 id=1-authentication>1. Authentication</h5>
+<ul>
+<li>For a demo or testing installation, follow the instructions in the <a href=../authentication/noauth.md>Demo Auth</a> section.</li>
+<li>For a production installation, follow the instructions in the <a href=../authentication/oidc.md>OpenID Connect</a> section.</li>
+</ul>
+<h5 id=2-cortex>2. Cortex</h5>
+<ul>
+<li>
+<p>For a demo or testing installation, you can create an empty <code>deploy/custom/cortex.yaml</code> file to use the default configuration.</p>
+</li>
+<li>
+<p>For a production installation, edit <code>deploy/custom/cortex.yaml</code> using the template as reference and the <a href=https://cortexmetrics.io/docs/configuration/configuration-file/>Cortex docs</a>.</p>
+</li>
+</ul>
+<h3 id=chart-installation>Chart Installation</h3>
+<p>Inside the opni-monitoring repo, change directories to <code>deploy/</code>.</p>
+<ol>
+<li>Ensure your current kubeconfig points to the main cluster.</li>
+<li>Run <code>helmfile apply</code></li>
+<li>Wait for all resources to become ready. This may take a few minutes.</li>
+</ol>
+<h3 id=accessing-the-dashboard>Accessing the dashboard</h3>
+<p>Once all the pods in the <code>opni-monitoring</code> namespace are running, open the web dashboard:</p>
+<ol>
+<li>Port-forward to the <code>opni-monitoring-internal</code> service:</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl -n opni-monitoring port-forward svc/opni-monitoring-internal management-web:management-web
+</code></pre></div><ol start=2>
+<li>Open your browser to <a href=http://localhost:12080 target=_blank>http://localhost:12080</a>.</li>
+</ol>
+<br>
+<hr>
+<h2 id=next-steps>Next Steps</h2>
+<p>This section is optional, but highly recommended.</p>
+<h3 id=adding-a-cluster>Adding a cluster</h3>
+<p>First, let&rsquo;s add the main cluster itself - this allows us to gather metrics from the Opni Gateway and Cortex. Follow these steps to add the cluster to Opni Monitoring:</p>
+<h4 id=create-a-token>Create a token</h4>
+<p>Tokens are used to authenticate new clusters during the bootstrap process. To create one:</p>
+<ol>
+<li>Navigate to the <strong>Tokens</strong> tab in the sidebar</li>
+<li>Click <strong>Create Token</strong></li>
+<li>Use the default fields, and click <strong>Create</strong>. The new token will appear in the table.</li>
+</ol>
+<div class="alert alert-warning" role=alert>
+<h4 class=alert-heading>Token Expiration</h4>
+All tokens will expire after a certain amount of time. The default value is 10 minutes, but you can choose any duration you like. If your token expires, you can simply create a new one.
+</div>
+<h4 id=add-a-cluster>Add a cluster</h4>
+<ol>
+<li>Navigate to the <strong>Clusters</strong> tab in the sidebar</li>
+<li>Click <strong>Add Cluster</strong></li>
+<li>In the <strong>Capabilities</strong> drop-down menu, select <strong>metrics</strong></li>
+<li>In the <strong>Token</strong> drop-down menu, select the token we just created. When a capability and token have been selected, an install command will appear below.</li>
+<li>Check the box that says <strong>Install Prometheus Operator</strong> (however, if you already have Prometheus Operator installed on a cluster you want to add, leave it unchecked).</li>
+<li>Click on the install command to copy it to the clipboard</li>
+<li>In a terminal, ensure your <code>KUBECONFIG</code> environment variable or <code>~/.kube/config</code> context points to the cluster you want to add (in this case, the main cluster), then paste and run the command.</li>
+<li>In a few seconds, you should see a green banner informing you that the cluster has been added. If you want to add any additional clusters right now, you can repeat step 7 for each cluster using the same command you copied previously.</li>
+<li>Click <strong>Finish</strong> to return to the cluster list.</li>
+</ol>
+<br>
+<hr>
+<h3 id=further-reading>Further Reading</h3>
+<p>Read the section on <a href=../guides/access_control>Access Control</a> to learn how to configure roles and role bindings. Then, head to <br> <code>https://grafana.&lt;gateway_address></code> in your browser to sign in.</p>
+<p>Check out the <a href=../guides>Guides</a> section for more. Happy monitoring!</p>
 </div>
 </div>
 </main>
