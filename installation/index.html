@@ -3,8 +3,6 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=generator content="Hugo 0.91.2">
-<link rel=alternate type=application/rss+xml href=https://rancher.github.io/opni-monitoring/installation/index.xml>
-<link rel=alternate type=text/html href=https://rancher.github.io/opni-monitoring/installation/_print/>
 <meta name=robots content="index, follow">
 <link rel="shortcut icon" href=/opni-monitoring/favicons/favicon.ico>
 <link rel=apple-touch-icon href=/opni-monitoring/favicons/apple-touch-icon-180x180.png sizes=180x180>
@@ -44,7 +42,7 @@
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.bd414ff00597a5b4642c0c5bc53f877b.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.8fc2ba5fa9195e7289e88036a31234f6.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -54,7 +52,7 @@
 <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
 <div id=td-sidebar-menu class=td-sidebar__inner>
 <form class="td-sidebar__search d-flex align-items-center">
-<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.bd414ff00597a5b4642c0c5bc53f877b.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.8fc2ba5fa9195e7289e88036a31234f6.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
 </button>
 </form>
@@ -106,7 +104,6 @@
 <a href="https://github.com/rancher/opni-monitoring-docs/new/main/content/en/installation/_index.md?filename=change-me.md&value=---%0Atitle%3A+%22Long+Page+Title%22%0AlinkTitle%3A+%22Short+Nav+Title%22%0Aweight%3A+100%0Adescription%3A+%3E-%0A+++++Page+description+for+heading+and+indexes.%0A---%0A%0A%23%23+Heading%0A%0AEdit+this+template+to+create+your+new+page.%0A%0A%2A+Give+it+a+good+name%2C+ending+in+%60.md%60+-+e.g.+%60getting-started.md%60%0A%2A+Edit+the+%22front+matter%22+section+at+the+top+of+the+page+%28weight+controls+how+its+ordered+amongst+other+pages+in+the+same+directory%3B+lowest+number+first%29.%0A%2A+Add+a+good+commit+message+at+the+bottom+of+the+page+%28%3C80+characters%3B+use+the+extended+description+field+for+more+detail%29.%0A%2A+Create+a+new+branch+so+you+can+preview+your+new+file+and+request+a+review+via+Pull+Request.%0A" class=td-page-meta--child target=_blank rel=noopener><i class="fa fa-edit fa-fw"></i> Create child page</a>
 <a href="https://github.com/rancher/opni-monitoring-docs/issues/new?title=Installation" class=td-page-meta--issue target=_blank rel=noopener><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href=https://github.com/rancher/opni-monitoring/issues/new class=td-page-meta--project-issue target=_blank rel=noopener><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
-<a id=print href=https://rancher.github.io/opni-monitoring/installation/_print/><i class="fa fa-print fa-fw"></i> Print entire section</a>
 </div>
 <div class=td-toc><nav id=TableOfContents>
 <ul>
@@ -118,9 +115,9 @@
 </li>
 <li><a href=#setting-up-the-main-cluster>Setting up the main cluster</a>
 <ul>
-<li><a href=#dns-configuration>DNS Configuration</a></li>
 <li><a href=#chart-configuration>Chart configuration</a></li>
 <li><a href=#chart-installation>Chart Installation</a></li>
+<li><a href=#dns-configuration>DNS Configuration</a></li>
 <li><a href=#accessing-the-dashboard>Accessing the dashboard</a></li>
 </ul>
 </li>
@@ -150,13 +147,13 @@
 <h3 id=infrastructure>Infrastructure</h3>
 <ul>
 <li>
-<p>One <strong>main</strong> cluster where the Opni Monitoring control-plane components will be installed.</p>
-<ul>
-<li>The main cluster must be accessible to all downstream clusters from a persistent DNS name. For a demo or testing installation, you can use <a href=https://sslip.io>sslip.io</a> if you do not have a domain name available.</li>
-</ul>
+<p>One <strong>main</strong> cluster where the Opni Monitoring control-plane components will be installed. The main cluster must be accessible to all downstream clusters.</p>
 </li>
 <li>
 <p>One or more <strong>downstream</strong> clusters which will be configured to send metrics to the <strong>main</strong> cluster</p>
+</li>
+<li>
+<p>A domain name or subdomain at which to host the Opni Gateway public API. For a demo or testing installation, you can use <a href=https://sslip.io>sslip.io</a>. In the rest of this guide, the domain name will be referred to as <code>&lt;gateway_address></code>.</p>
 </li>
 <li>
 <p>All clusters must have a default storage class available.</p>
@@ -165,32 +162,28 @@
 <h3 id=dependencies>Dependencies</h3>
 <ul>
 <li>
-<p>Helm version 3.8 or later</p>
+<p><a href=https://helm.sh>helm</a> version <strong>3.8</strong> or later</p>
 </li>
 <li>
-<p>Install the <code>helm-diff</code> plugin:</p>
+<p><a href=https://github.com/databus23/helm-diff>helm-diff</a> plugin, which can be installed with the following command:</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ helm plugin install https://github.com/databus23/helm-diff
 </code></pre></div></li>
 <li>
-<p>Install <a href=https://github.com/roboll/helmfile>helmfile</a> using your distribution&rsquo;s package manager or from the GitHub release page.</p>
+<p><a href=https://github.com/roboll/helmfile>helmfile</a>, which can be installed using your distribution&rsquo;s package manager or from the GitHub release page.</p>
 </li>
-<li>
-<p>Clone the opni-monitoring repo:</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ git clone https://github.com/rancher/opni-monitoring
-</code></pre></div></li>
 </ul>
 <h2 id=setting-up-the-main-cluster>Setting up the main cluster</h2>
-<h3 id=dns-configuration>DNS Configuration</h3>
-<ol>
-<li>Identify the public DNS name of your main cluster or load balancer. This will be referenced in the following sections as <code>&lt;gateway_address></code>.</li>
-<li>Configure <code>A</code> records such that <code>&lt;gateway_address></code> and <code>grafana.&lt;gateway_address></code> both route to the IP address of your main cluster&rsquo;s load balancer (skip this step if you are using <a href=https://sslip.io>sslip.io</a> or a similar service).</li>
-</ol>
-<h3 id=chart-configuration>Chart configuration</h3>
+<p>First, clone the opni-monitoring repo:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ git clone https://github.com/rancher/opni-monitoring
+</code></pre></div><p>Ensure you are running helm version 3.8 or later:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ helm version
+version.BuildInfo<span style=color:#ce5c00;font-weight:700>{</span>Version:<span style=color:#4e9a06>&#34;v3.8.1&#34;</span>, GitCommit:<span style=color:#4e9a06>&#34;5cb9af4b1b271d11d7a97a71df3ac337dd94ad37&#34;</span>, GitTreeState:<span style=color:#4e9a06>&#34;clean&#34;</span>, GoVersion:<span style=color:#4e9a06>&#34;go1.17.8&#34;</span><span style=color:#ce5c00;font-weight:700>}</span>
+</code></pre></div><h3 id=chart-configuration>Chart configuration</h3>
 <p>Inside the opni-monitoring repo, there are a few template yaml files in <code>deploy/custom</code> which you will need to copy and edit before continuing. These files will be used to configure authentication and Cortex long-term storage.</p>
 <h5 id=1-authentication>1. Authentication</h5>
 <ul>
-<li>For a demo or testing installation, follow the instructions in the <a href=../authentication/noauth.md>Demo Auth</a> section.</li>
-<li>For a production installation, follow the instructions in the <a href=../authentication/oidc.md>OpenID Connect</a> section.</li>
+<li>For a demo or testing installation, follow the instructions in the <a href=../authentication/noauth>Demo Auth</a> section.</li>
+<li>For a production installation, follow the instructions in the <a href=../authentication/oidc>OpenID Connect</a> section.</li>
 </ul>
 <h5 id=2-cortex>2. Cortex</h5>
 <ul>
@@ -207,6 +200,11 @@
 <li>Ensure your current kubeconfig points to the main cluster.</li>
 <li>Run <code>helmfile apply</code></li>
 <li>Wait for all resources to become ready. This may take a few minutes.</li>
+</ol>
+<h3 id=dns-configuration>DNS Configuration</h3>
+<ol>
+<li>Identify the external IP of the <code>opni-monitoring</code> load balancer.</li>
+<li>Configure <code>A</code> records such that <code>&lt;gateway_address></code> and <code>grafana.&lt;gateway_address></code> both resolve to the IP address of the load balancer (skip this step if you are using <a href=https://sslip.io>sslip.io</a> or a similar service).</li>
 </ol>
 <h3 id=accessing-the-dashboard>Accessing the dashboard</h3>
 <p>Once all the pods in the <code>opni-monitoring</code> namespace are running, open the web dashboard:</p>
@@ -252,7 +250,7 @@ All tokens will expire after a certain amount of time. The default value is 10 m
 <p>Read the section on <a href=../guides/access_control>Access Control</a> to learn how to configure roles and role bindings. Then, head to <br> <code>https://grafana.&lt;gateway_address></code> in your browser to sign in.</p>
 <p>Check out the <a href=../guides>Guides</a> section for more. Happy monitoring!</p>
 <div class="text-muted mt-5 pt-3 border-top">
-Last modified April 7, 2022: <a href=https://github.com/rancher/opni-monitoring-docs/commit/cd12c4c52eb7c1b163c3cba2b3146b794ce7ecd6>Update management tests; add global test logger (cd12c4c)</a>
+Last modified April 7, 2022: <a href=https://github.com/rancher/opni-monitoring-docs/commit/fc74a01e35161291ba8e26cedc4bf3039e24a4b8>update installation docs (fc74a01)</a>
 </div>
 </div>
 </main>
