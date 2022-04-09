@@ -43,7 +43,7 @@ func All() {
 	if _, err := os.Stat("web/dist/_nuxt"); os.IsNotExist(err) {
 		mg.Deps(web.Dist)
 	}
-	mg.Deps(build.Build)
+	mg.SerialDeps(Generate, build.Build)
 }
 
 func Generate() {
@@ -77,7 +77,7 @@ func ControllerGen() error {
 					strings.Contains(line, "exit status 1") {
 					continue
 				}
-				fmt.Fprintln(os.Stderr, bufStr)
+				fmt.Fprintln(os.Stderr, "controller-gen error:", bufStr)
 				return err
 			}
 		}
@@ -166,7 +166,7 @@ func findProtos() []protobuf.Proto {
 }
 
 func init() {
-	build.Deps(Generate)
+	// build.Deps(Generate)
 	docker.Deps(build.Build)
 	test.Deps(testbin.Testbin, build.Build)
 
@@ -176,12 +176,31 @@ func init() {
 
 	k8sVersion := k8sModuleVersion()
 
-	build.Config.ExtraTargets = map[string]string{
-		"./internal/cmd/testenv": "bin/testenv",
-		"./plugins/example":      "bin/plugin_example",
-		"./plugins/cortex":       "bin/plugin_cortex",
-		"./plugins/logging":      "bin/plugin_logging",
+	extraTargets := map[string]string{}
+	// find plugins
+	entries, err := os.ReadDir("./plugins")
+	if err != nil {
+		panic(err)
 	}
+	for _, entry := range entries {
+		if !entry.IsDir() {
+			continue
+		}
+		extraTargets["./plugins/"+entry.Name()] = "bin/plugins/plugin_" + entry.Name()
+	}
+	// find (optional) internal cmds
+
+	if entries, err = os.ReadDir("./internal/cmd"); err == nil {
+		for _, entry := range entries {
+			if !entry.IsDir() {
+				continue
+			}
+			extraTargets["./internal/cmd/"+entry.Name()] = "bin/" + entry.Name()
+		}
+	}
+
+	build.Config.ExtraTargets = extraTargets
+
 	build.Config.ExtraEnv = map[string]string{
 		"GOOS": "linux",
 	}
