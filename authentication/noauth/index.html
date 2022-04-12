@@ -20,10 +20,10 @@
 <meta property="og:description" content="Configure a demo authentication provider">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://rancher.github.io/opni-monitoring/authentication/noauth/"><meta property="article:section" content="authentication">
-<meta property="article:modified_time" content="2022-03-31T14:50:58-04:00"><meta property="og:site_name" content="Opni Monitoring">
+<meta property="article:modified_time" content="2022-04-12T14:43:09-07:00"><meta property="og:site_name" content="Opni Monitoring">
 <meta itemprop=name content="Demo Auth">
 <meta itemprop=description content="Configure a demo authentication provider">
-<meta itemprop=dateModified content="2022-03-31T14:50:58-04:00">
+<meta itemprop=dateModified content="2022-04-12T14:43:09-07:00">
 <meta itemprop=wordCount content="157">
 <meta itemprop=keywords content><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Demo Auth">
@@ -46,7 +46,7 @@
 </li>
 </ul>
 </div>
-<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.8fc2ba5fa9195e7289e88036a31234f6.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<div class="navbar-nav d-none d-lg-block"><input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.06f4586b54d66724f1d37b0ce43d0fe3.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 </div>
 </nav>
 </header>
@@ -56,7 +56,7 @@
 <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
 <div id=td-sidebar-menu class=td-sidebar__inner>
 <form class="td-sidebar__search d-flex align-items-center">
-<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.8fc2ba5fa9195e7289e88036a31234f6.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/opni-monitoring/offline-search-index.06f4586b54d66724f1d37b0ce43d0fe3.json data-offline-search-base-href=/ data-offline-search-max-results=10>
 <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
 </button>
 </form>
@@ -146,7 +146,7 @@
 <div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#204a87;font-weight:700>grafana.ini</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
 </span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>server</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
 </span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>domain</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;grafana.&lt;gateway_address&gt;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
-</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>root_url</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;https://&lt;gateway_address&gt;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>root_url</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;https://grafana.&lt;gateway_address&gt;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
 </span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>auth.generic_oauth</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
 </span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>client_id</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;grafana&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
 </span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>client_secret</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;supersecret&#34;</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#8f5902;font-style:italic># (this can be whatever you want)</span><span style=color:#f8f8f8;text-decoration:underline>
@@ -184,7 +184,7 @@
 </span><span style=color:#f8f8f8;text-decoration:underline>    </span>- <span style=color:#4e9a06>&#34;&lt;gateway_address&gt;&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
 </span></code></pre></div>
 <div class="text-muted mt-5 pt-3 border-top">
-Last modified March 31, 2022: <a href=https://github.com/rancher/opni-monitoring-docs/commit/a59406205c09cdff345706670d2852160daaeb3d>Update documentation (a594062)</a>
+Last modified April 12, 2022: <a href=https://github.com/rancher/opni-monitoring-docs/commit/241a8ef3cbefb85eeb61d1e4e7b8b8a1d7c1f848>adding 'grafana' to grafana server root_url (241a8ef)</a>
 </div>
 </div>
 </main>
