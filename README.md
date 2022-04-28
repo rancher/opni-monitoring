@@ -1,3 +1,7 @@
+### This code has been merged into [rancher/opni](https://github.com/rancher/opni)
+
+-------
+
 ![](./docs/content/en/static/logo-light.svg)
 
 [![Build](https://github.com/rancher/opni-monitoring/actions/workflows/build.yaml/badge.svg)](https://github.com/rancher/opni-monitoring/actions/workflows/build.yaml)
